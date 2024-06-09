@@ -13,7 +13,8 @@ public class Program
         // creteTable();   //  Create Table
         // AddCustomer();  //  Add Customer
         // GetCustomer();  //  Get table record
-        UpdateCustomer();
+        // UpdateCustomer(); // Update Table
+        DeleteCustomer();
         Console.ReadLine();
     }
 
@@ -156,6 +157,33 @@ public class Program
         {
             sqlConnection.Close();
             Console.WriteLine("Connection Close.");
+        }
+    }
+
+    #endregion
+
+    #region Delete Customer
+    public static void DeleteCustomer()
+    {
+        string sqlStatement = "DELETE FROM CUSTOMER WHERE ID = 1";
+        SqlConnection sqlConnection = new SqlConnection(conString);
+
+        try
+        {
+            sqlConnection.Open();
+            Console.WriteLine("Connection Open");
+            SqlCommand sqlCommand = new SqlCommand(sqlStatement, sqlConnection);
+            sqlCommand.ExecuteNonQuery();
+            Console.WriteLine("Customer Deleted.");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        finally
+        {
+            sqlConnection.Close();
+            Console.WriteLine("Connection Closed");
         }
     }
 
