@@ -9,9 +9,9 @@ public class Program
 
     public static void Main(string[] args)
     {
-        // createDB();  //  Create Database
-        creteTable();   //  Create Table
-        Console.WriteLine("Database Created Successfully!!");
+        // createDB();     //  Create Database
+        // creteTable();   //  Create Table
+        // AddCustomer();  //  Add Customer
     }
 
     #region Create Database
@@ -44,6 +44,7 @@ public class Program
     }
     #endregion
 
+    #region Create Table
     private static void creteTable()
     {
         SqlConnection sqlConnection = new SqlConnection(conString);
@@ -68,5 +69,31 @@ public class Program
             sqlConnection.Close();
         }
     }
+    #endregion
+
+    #region Add Data in Table
+    public static void AddCustomer()
+    {
+        string sqlStatement = "INSERT INTO Customer(NAME,BALANCE) values ('ABC', 999)";
+        SqlConnection sqlConnection = new SqlConnection(conString);
+        try
+        {
+            sqlConnection.Open();
+            Console.WriteLine("Connection Open");
+            SqlCommand sqlCommand = new SqlCommand(sqlStatement, sqlConnection);
+            sqlCommand.ExecuteNonQuery();
+            Console.WriteLine("Customer Added Into Table.");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        finally
+        {
+            sqlConnection.Close();
+        }
+    }
+
+    #endregion
 
 }
