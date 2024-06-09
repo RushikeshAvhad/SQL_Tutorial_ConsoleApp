@@ -205,6 +205,28 @@ namespace SQL_Tutorial_ConsoleApp
             }
         }
 
-        
+        public static void truncateTable()
+        {
+            SqlConnection sqlConnection = new SqlConnection(conString);
+            string sqlStatement = "TRUNCATE TABLE CUSTOMER";
+            try
+            {
+                if (sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
+                SqlCommand sqlCommand = new SqlCommand(sqlStatement, sqlConnection);
+                sqlCommand.ExecuteNonQuery();
+                Console.WriteLine("All Data Cleared Successfully !!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
     }
 }

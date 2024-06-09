@@ -19,7 +19,8 @@ public class Program
             Console.WriteLine("3. Add New Customer");
             Console.WriteLine("4. Update Customer");
             Console.WriteLine("5. Delete Customer");
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("6. Clear All Record");
+            Console.WriteLine("7. Exit");
             Console.Write("Enter your choice: ");
 
             int choice;
@@ -47,6 +48,9 @@ public class Program
                     Customer.DeleteCustomer();
                     break;
                 case 6:
+                    Customer.truncateTable();
+                    break;
+                case 7:
                     Environment.Exit(0);
                     break;
                 default:
