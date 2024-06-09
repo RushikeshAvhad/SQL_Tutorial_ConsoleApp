@@ -9,12 +9,13 @@ public class Program
 
     public static void Main(string[] args)
     {
-        // createDB();     //  Create Database
-        // creteTable();   //  Create Table
-        // AddCustomer();  //  Add Customer
-        // GetCustomer();  //  Get table record
-        // UpdateCustomer(); // Update Table
-        DeleteCustomer();
+        // createDB();          //  Create Database
+        // creteTable();        //  Create Table
+        // AddCustomer();       //  Add Customer
+        // GetCustomer();       //  Get table record
+        // UpdateCustomer();    //  Update Table
+        // DeleteCustomer();    //  Delete Record
+        dropDB();            //  Drop Database
         Console.ReadLine();
     }
 
@@ -187,5 +188,37 @@ public class Program
         }
     }
 
+    #endregion
+
+    #region Drop Database
+    private static void dropDB()
+    {
+        string connectionString = "Data Source=localhost\\SQLEXPRESS; Integrated Security=SSPI; Initial Catalog=master;";
+        string cmdText = @"
+            ALTER DATABASE MYTESTDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+            DROP DATABASE MYTESTDB;";
+        SqlConnection sqlconnection = new SqlConnection(connectionString);
+
+        if (sqlconnection.State != ConnectionState.Open)
+        {
+            try
+            {
+                sqlconnection.Open();
+                Console.WriteLine("Connection Open");
+                SqlCommand sqlCommand = new SqlCommand(cmdText, sqlconnection);
+                sqlCommand.ExecuteNonQuery();
+                Console.WriteLine("Database Droped");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                sqlconnection.Close();
+                Console.WriteLine("Connection Closed");
+            }
+        }
+    }
     #endregion
 }
