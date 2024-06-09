@@ -12,7 +12,8 @@ public class Program
         // createDB();     //  Create Database
         // creteTable();   //  Create Table
         // AddCustomer();  //  Add Customer
-        GetCustomer();
+        // GetCustomer();  //  Get table record
+        UpdateCustomer();
         Console.ReadLine();
     }
 
@@ -128,6 +129,33 @@ public class Program
         {
             sqlConnection.Close();
             Console.WriteLine("Connection Close");
+        }
+    }
+
+    #endregion
+
+    #region Update Table
+    public static void UpdateCustomer()
+    {
+        string sqlStatement = "UPDATE CUSTOMER SET NAME='PQRS' WHERE ID=1";
+        SqlConnection sqlConnection = new SqlConnection(conString);
+
+        try
+        {
+            sqlConnection.Open();
+            Console.WriteLine("Connection Open");
+            SqlCommand sqlCommand = new SqlCommand(sqlStatement, sqlConnection);
+            sqlCommand.ExecuteNonQuery();
+            Console.WriteLine("Customer Updated");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        finally
+        {
+            sqlConnection.Close();
+            Console.WriteLine("Connection Close.");
         }
     }
 
