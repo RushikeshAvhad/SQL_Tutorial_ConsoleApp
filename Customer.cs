@@ -150,7 +150,7 @@ namespace SQL_Tutorial_ConsoleApp
         public static void UpdateCustomer()
         {
             Console.WriteLine("\nUpdate Customer");
-            Console.WriteLine("Enter Customer ID to Update Customer : ");
+            Console.Write("Enter Customer ID to Update Customer : ");
             int customerId = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Enter Customer Name : ");
