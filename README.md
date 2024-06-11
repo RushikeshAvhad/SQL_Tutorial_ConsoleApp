@@ -10,6 +10,7 @@
 4.	Drop Table
 
 5.	Add New Record in Table
-6.	Update Record in Table
-7.	Delete Single Record from Table
-8.	Clear All Record from Table using TRUNCATE query
+7.	Get / Read Single Record or all Record from table
+8.  Update Record in Table
+9.	Delete Single Record from Table
+10.	Clear All Record from Table using TRUNCATE query
